@@ -7,4 +7,3 @@ class HealthRoutes < Sinatra::Base
       status 403
     end
   end
-end
