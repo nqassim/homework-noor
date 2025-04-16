@@ -14,7 +14,6 @@ class AuthMiddleware
   def call(env)
     auth_token = env.fetch('HTTP_AUTHORIZATION')[6..]
     creds = Base64.decode64(auth_token).force_encoding('UTF-8').split(':', 2)
-
     if creds[0].eql?(@stored_creds[0]) && creds[1].eql?(@stored_creds[1])
       @req = Rack::Request.new(env)
       @req.set_header('AUTHED', true)

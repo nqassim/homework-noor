@@ -1,55 +1,71 @@
 class ArticleController
+  # Creates a new article
   def create_article(article)
-    article_not_exists = ! (Article.where(:title => article['title']).empty?)
+    # Check if an article with the same title already exists
+    article_exists = !(Article.where(title: article['title']).empty?)
 
-    return { ok: false, msg: 'Article with given title already exists' } unless article_not_exists
+    return { ok: false, msg: 'Article with given title already exists' } if article_exists
 
-    new_article = Article.new(:title => article['title'], :content => article['content'], :created_at => Time.now)
+    # Create a new article with the provided data
+    new_article = Article.new(title: article['title'], content: article['content'], created_at: Time.now)
     new_article.save
 
-    { ok: false, obj: article }
-  rescue StandardError
-    { ok: false }
+    { ok: true, obj: new_article }
+  rescue StandardError => e
+    { ok: false, msg: e.message }
   end
 
+  # Updates an existing article
   def update_article(id, new_data)
+    # Find the article by its ID
+    article = Article.find_by(id: id)
 
-    article = Article.where(id: id).first
+    return { ok: false, msg: 'Article could not be found' } if article.nil?
 
-    return { ok: false, msg: 'Article could not be found' } unless article.nil?
+    # Update the article with the new data
+    article.update(title: new_data['title'], content: new_data['content'])
 
-    article.title = new_data['title']
-    article.content = new_data['content']
-    article.save_changes
-
-    { ok: true }
-  rescue StandardError
-    { ok: false }
+    { ok: true, obj: article }
+  rescue StandardError => e
+    { ok: false, msg: e.message }
   end
 
+  # Retrieves a single article by ID
   def get_article(id)
-    res = Article.where(:id => id)
+    # Find the article by its ID
+    article = Article.find_by(id: id)
 
-    if res.empty?
-      { ok: true, data: res }
+    if article
+      { ok: true, data: article }
     else
       { ok: false, msg: 'Article not found' }
     end
-  rescue StandardError
-    { ok: false }
+  rescue StandardError => e
+    { ok: false, msg: e.message }
   end
 
-  def delete_article(_id)
-    delete_count = Article.delete(:id => id)
+  # Deletes an article by ID
+  def delete_article(id)
+    # Find the article by its ID
+    article = Article.find_by(id: id)
 
-    if delete_count == 0
-      { ok: true }
+    if article
+      article.destroy
+      { ok: true, delete_count: 1 }
     else
-      { ok: true, delete_count: delete_count }
+      { ok: false, msg: 'Article does not exist' }
     end
+  rescue StandardError => e
+    { ok: false, msg: e.message }
   end
 
+  # Retrieves all articles
   def get_batch
-    
+    # Fetch all articles from the database
+    articles = Article.all
+
+    { ok: true, data: articles }
+  rescue StandardError => e
+    { ok: false, msg: e.message }
   end
 end
