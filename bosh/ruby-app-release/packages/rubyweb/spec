@@ -5,4 +5,4 @@ files:
 - ruby-web-app/**/*
 
 dependencies:
-- ruby-2.3.2
+- ruby-2.7.0-r0.30.0 # fixed version of ruby 2.7.0 as dependency

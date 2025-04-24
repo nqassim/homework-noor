@@ -6,7 +6,7 @@ templates:
   config.ebr: tmp/config.yml
 
 packages:
-- ruby
+- ruby-2.7.0-r0.30.0 # fixed version of ruby 2.7.0 as dependency
 
 properties:
   port:

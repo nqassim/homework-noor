@@ -1,0 +1,24 @@
+ruby-2.5.7.tar.gz:
+  size: 15669771
+  object_id: d79fc3fa-1598-4334-7dd5-b23e4d59fc37
+  sha: sha256:0b2d0d5e3451b6ab454f81b1bfca007407c0548dea403f1eba2e429da4add6d4
+ruby-2.6.5.tar.gz:
+  size: 16172159
+  object_id: fc1dc2d0-cf71-41d8-5d0f-d630375a54f5
+  sha: sha256:66976b716ecc1fd34f9b7c3c2b07bbd37631815377a2e3e85a5b194cfdcbed7d
+ruby-2.7.0.tar.gz:
+  size: 16799684
+  object_id: f3b9dabc-381d-4b1a-4057-5b80e5a5a717
+  sha: sha256:8c99aa93b5e2f1bc8437d1bbbefd27b13e7694025331f77245d0c068ef1f8cbe
+rubygems-2.7.10.tgz:
+  size: 863618
+  object_id: 9e014999-f90e-4c63-797a-60b8f31a1caa
+  sha: sha256:d81dda6d8c54849cda16a95ae0216516deaa0f59ed3c123222128b15723a82ad
+rubygems-3.1.2.tgz:
+  size: 995386
+  object_id: b32947ca-f407-4e83-7a72-2cbfb225ff12
+  sha: sha256:edd1a6bca6e780a3f65019bbcb0bbfe36c65a9809c0d43e7b52f23792591f140
+yaml-0.1.7.tar.gz:
+  size: 527518
+  object_id: b327fbb6-37bd-4f57-7a9b-42bf7fd79473
+  sha: 3590cbf092ef4c71bc0a9b404c00a626b1e04dee

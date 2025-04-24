@@ -1,0 +1,12 @@
+---
+name: ruby-2.5-test
+
+templates:
+  run: bin/run
+  cpi: bin/cpi
+
+packages:
+- ruby-2.5.7-r0.25.0
+- ruby-2.5-test
+
+properties: {}
