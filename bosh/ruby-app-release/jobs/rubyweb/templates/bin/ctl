@@ -1,0 +1,40 @@
+#!/bin/bash
+# filepath: c:\Users\Administrator\Desktop\homework-noor\bosh\ruby-app-release\jobs\rubyweb\templates\bin\ctl
+
+set -e
+
+APP_DIR="/var/vcap/jobs/rubyweb"
+APP_FILE="$APP_DIR/app.rb"
+PIDFILE="/var/vcap/sys/run/rubyweb/app.pid"
+
+case "$1" in
+  start)
+    if [ -z "$bootstrap" ]; then
+      echo "No bootstrap file provided"
+      exit 1
+    fi
+
+    if [ "$bootstrap" != "app.rb" ]; then
+      echo "Wrong bootstrap file provided"
+      exit 1
+    fi
+
+    echo "Starting application..."
+    cd "$APP_DIR"
+    exec bundle exec ruby "$APP_FILE" -o 0.0.0.0 -p 8181 &
+    echo $! > "$PIDFILE"
+    ;;
+  stop)
+    echo "Stopping application..."
+    if [ -f "$PIDFILE" ]; then
+      kill -9 `cat $PIDFILE`
+      rm -f "$PIDFILE"
+    else
+      echo "No PID file found. Application may not be running."
+    fi
+    ;;
+  *)
+    echo "Usage: $0 {start|stop}"
+    exit 1
+    ;;
+esac

@@ -1,0 +1,17 @@
+<%
+  # Use the provided port value or default to 8080
+  port = p("port") || 8080
+
+  # Validate port range
+  if port <= 1024
+    raise "Invalid port number"
+  end
+
+  # Explicitly disallow port 7999
+  if port == 7999
+    raise "Invalid port number"
+  end
+%>
+
+---
+port: <%= port %>
