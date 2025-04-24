@@ -2,8 +2,8 @@
 name: rubyweb
 
 templates:
-  ctl.ebr: tmp/ctl
-  config.ebr: tmp/config.yml
+  ctl.erb: bin/ctl
+  config.erb: cfg/config.yml
 
 packages:
 - ruby-2.7.0-r0.30.0 # fixed version of ruby 2.7.0 as dependency
@@ -11,7 +11,7 @@ packages:
 properties:
   port:
     description: "Specify the port for the Web-app to listen on"
-    default: 8080
+    default: 8181
   bootstrap:
     description: "Specify the main file used to run the app"
-    default: ""
+    default: app.rb
